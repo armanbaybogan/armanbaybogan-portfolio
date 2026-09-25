@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f4f5f2" />
+  <meta name="description" content="Dersleri canlı olarak düzenli notlara dönüştüren kişisel çalışma alanı." />
+  <title>Notely — Canlı Ders Notları</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Notely ana sayfa">
+        <span class="brand-mark"><i data-lucide="audio-lines"></i></span>
+        <span>notely</span>
+      </a>
+
+      <nav class="nav-list" aria-label="Ana menü">
+        <button class="nav-item active"><i data-lucide="radio"></i><span>Canlı ders</span><kbd>⌘ N</kbd></button>
+        <button class="nav-item" id="archiveButton"><i data-lucide="library"></i><span>Notlarım</span><b id="noteBadge">0</b></button>
+      </nav>
+
+      <div class="sidebar-section">
+        <p>SON KAYITLAR</p>
+        <div id="recentList" class="recent-list">
+          <div class="recent-empty">İlk ders kaydın burada görünecek.</div>
+        </div>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="usage-card">
+          <span class="usage-icon"><i data-lucide="sparkles"></i></span>
+          <div><strong>Kişisel çalışma alanın</strong><p>Notların yalnızca bu cihazda.</p></div>
+        </div>
+        <button class="profile-row" id="settingsButton">
+          <span class="avatar">AB</span><span><strong>Arman</strong><small>Ayarlar ve bağlantı</small></span><i data-lucide="chevron-right"></i>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="breadcrumb">ÇALIŞMA ALANI <i data-lucide="chevron-right"></i> CANLI DERS</p>
+          <h1>Günaydın, <em>Arman.</em></h1>
+        </div>
+        <div class="top-actions">
+          <span class="save-state"><i data-lucide="cloud-check"></i> Yerel olarak kaydediliyor</span>
+          <button class="icon-button" id="themeButton" aria-label="Temayı değiştir" title="Temayı değiştir"><i data-lucide="sun"></i></button>
+        </div>
+      </header>
+
+      <section class="intro-row">
+        <div><h2>Bugünkü dersi yakala.</h2><p>Mikrofonu aç; konuşulanlar sen dinlerken düzenli notlara dönüşsün.</p></div>
+        <div class="date-chip"><span id="dayName">Cuma</span><strong id="dayNumber">25</strong><small id="monthName">Eylül</small></div>
+      </section>
+
+      <section class="workspace">
+        <aside class="session-panel">
+          <div class="status-row">
+            <span class="status-badge" id="statusBadge"><span></span><b>Hazır</b></span>
+            <span class="quality"><i data-lucide="waves"></i> Yüksek kalite</span>
+          </div>
+          <div class="recorder-visual" id="recorderVisual">
+            <div class="rings"><span></span><span></span><span></span></div>
+            <button class="record-button" id="recordButton" aria-label="Kaydı başlat"><i data-lucide="mic"></i></button>
+          </div>
+          <div class="timer" id="timer">00:00:00</div>
+          <p class="record-hint" id="recordHint">Kayda başlamak için dokun</p>
+          <div class="input-meter" aria-label="Mikrofon ses seviyesi">
+            <div class="meter-label"><span><i data-lucide="mic-2"></i> Mikrofon seviyesi</span><b id="levelText">— dB</b></div>
+            <div class="meter-track"><span id="meterFill"></span></div>
+          </div>
+          <div class="privacy-note"><i data-lucide="shield-check"></i><p><strong>Codex hesabınla çalışır.</strong><br />Ses, App Server üzerinden anlık transkript akışına gönderilir.</p></div>
+        </aside>
+
+        <section class="transcript-panel">
+          <div class="panel-head">
+            <div class="title-wrap"><span class="live-dot"></span><div><label for="lessonTitle">DERS BAŞLIĞI</label><input id="lessonTitle" value="Yeni ders notu" /></div></div>
+            <div class="panel-actions">
+              <button class="text-button" id="copyButton" title="Notları kopyala"><i data-lucide="copy"></i><span>Kopyala</span></button>
+              <button class="text-button primary" id="downloadButton" title="Notları indir"><i data-lucide="download"></i><span>İndir</span></button>
+            </div>
+          </div>
+          <div class="transcript" id="transcript">
+            <div class="empty-state" id="emptyState">
+              <div class="empty-illustration"><span><i data-lucide="audio-waveform"></i></span><i data-lucide="arrow-right"></i><span><i data-lucide="align-left"></i></span></div>
+              <h2>Dinlemeye hazırız</h2>
+              <p>Kayıt başladığında konuşma bitmeden, gelen her delta birkaç milisaniye içinde burada belirecek.</p>
+              <div class="feature-row"><span><i data-lucide="languages"></i> Türkçe optimize</span><span><i data-lucide="zap"></i> Anlık aktarım</span><span><i data-lucide="lock-keyhole"></i> Güvenli</span></div>
+            </div>
+          </div>
+          <footer class="live-footer"><span id="wordCount">0 kelime</span><span class="api-state" id="apiState">Bağlantı kontrol ediliyor…</span></footer>
+        </section>
+      </section>
+      <p class="shortcut-hint"><kbd>Space</kbd> ile kaydı başlat veya durdur</p>
+    </main>
+  </div>
+
+  <dialog id="settingsDialog">
+    <form method="dialog" id="settingsForm">
+      <div class="dialog-head"><div><p class="section-kicker">APP SERVER</p><h2>Codex bağlantısı</h2><p>Notely, mevcut Codex oturumunu ve aboneliğini kullanır.</p></div><button class="icon-button" value="cancel" aria-label="Kapat"><i data-lucide="x"></i></button></div>
+      <div class="connection-hero"><span><i data-lucide="terminal"></i></span><div><strong id="connectionTitle">Bağlantı kontrol ediliyor</strong><p id="connectionDetail">Codex App Server aranıyor…</p></div></div>
+      <div class="notice"><i data-lucide="info"></i><p><strong>API anahtarı gerekmez.</strong> Notely, <code>codex app-server</code> sürecini otomatik başlatır ve <code>thread/realtime/transcript/delta</code> olaylarını doğrudan arayüze aktarır.</p></div>
+      <button class="primary-button" id="retryButton" type="button">Bağlantıyı yeniden dene <i data-lucide="refresh-cw"></i></button>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
